@@ -1,7 +1,8 @@
 <h1>Users</h1>
 <% @user_decorators.each do |user_decorator| %>
   <div>
-    <%= user_decorator.name %>
+    <%= user_decorator %>
     <%= user_decorator.staff_badge %>
+    <%= user_decorator.mod_badge %>
   </div>
 <% end %>

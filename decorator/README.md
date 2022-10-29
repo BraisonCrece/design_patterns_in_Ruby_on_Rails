@@ -5,7 +5,7 @@ del patrón de diseño **decorator**. Y de como poder utilizarlo para organizar 
 
 ## ¿Qué es un decorator?
 
-Un decorator es una clase que contiene la lógica de presentación de un modelo, y que se encarga de encapsular la lógica de presentación de un modelo, para que no se mezcle con la lógica de negocio.
+Un decorator es una clase que contiene la lógica de presentación de un modelo para que no se mezcle con la lógica de negocio.
 
 Imaginémonos el supuesto en el que tengamos que mostrar datos
 de un modelo usuario:
@@ -176,13 +176,71 @@ Y ahora en la vista, en lugar de llamar al método `name` del modelo, lo que hac
 
 ```php
 <h1>Users</h1>
-<% @user_decorators.each do |user| %>
+<% @user_decorators.each do |user_decorator| %>
   <div>
-    <%= user.name %>
+    <%= user_decorator.name %>
+  </div>
+<% end %>
+```
+Al haber hecho cambios en la configuración de la aplicación, tenemos que reiniciar el servidor para que se carguen los cambios.
+
+Podemos además añadir un método `to_s` a la clase `UserDecorator` para que cuando llamemos al método `name` no tengamos que escribir `user_decorator.name`, sino que podamos llamar directamente al objeto `user_decorator`:
+
+```rb
+class UserDecorator
+  attr_reader :user, :view_context
+  def initialize(user, view_context)
+    @user, @view_context = user, view_context
+  end
+
+  def name
+    "#{user.first_name} #{user.last_name.first}."
+  end
+
+  def to_s
+    name
+  end
+end
+```
+
+### Más ejemplos de uso de un decorator 
+
+```rb
+class UserDecorator
+  attr_reader :user, :view_context
+  def initialize(user, view_context)
+    @user, @view_context = user, view_context
+  end
+
+
+# Aquí podemos apreciar el uso de view_context, para poder utilizar
+# content_tag (en este caso) 
+def staff_badge
+    view_context.content_tag(:span, 'Staff', class: 'badge badge-success') if user.admin?
+  end
+
+  def mod_badge
+    view_context.content_tag(:span, 'Mod', class: 'badge badge-primary') if user.moderator?
+  end
+end
+```
+
+```php
+<% @user_decorators.each do |user_decorator| %>
+  <div>
+    <%= user_decorator.name %>
+    <%= user_decorator.staff_badge %>
+    <%= user_decorator.mod_badge %>
   </div>
 <% end %>
 ```
 
-Al haber hecho cambios en la configuración de la aplicación, tenemos que reiniciar el servidor para que se carguen los cambios.
+
+
+
+
+
+
+
 
 Como hemos visto, los `decorators` son una forma de encapsular la lógica de los modelos, y de esta forma poder tener un modelo más limpio y legible.

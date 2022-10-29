@@ -11,6 +11,14 @@ class UserDecorator
   def staff_badge
     view_context.content_tag(:span, 'Staff', class: 'badge badge-success') if user.admin?
   end
-  
-  
+
+  def mod_badge
+    view_context.content_tag(:span, 'Mod', class: 'badge badge-primary') if user.moderator?
+  end
+
+  def to_s
+    name
+  end
+
 end
+
