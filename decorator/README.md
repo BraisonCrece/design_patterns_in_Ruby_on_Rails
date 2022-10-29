@@ -241,3 +241,19 @@ Como hemos visto, los `decorators` son una forma de encapsular la lógica de los
 
 Hay que tener en cuenta que utilizar decorators añade una capa de complejidad a nuestra aplicación, y por lo tanto, hay que utilizarlos con criterio, y solo cuando sea necesario (en una aplicación básica, pues va a ser que no 😅).
 
+ ### Pros 
+ ✅ Puedes extender el comportamiento de un objeto sin crear una nueva subclase.
+ 
+ ✅ Puedes añadir o eliminar responsabilidades de un objeto durante el tiempo de ejecución.
+ 
+ ✅ Puedes combinar varios comportamientos envolviendo un objeto con varios decoradores.
+ 
+ ✅Principio de responsabilidad única. Puedes dividir una clase monolítica que implementa muchas variantes posibles de comportamiento, en varias clases más pequeñas.
+ 
+ ### Contras
+ ❌ Resulta difícil eliminar un wrapper específico de la pila de wrappers.
+ 
+ ❌ Es difícil implementar un decorador de tal forma que su comportamiento no dependa del orden en la pila de decoradores.
+ 
+ ❌ El código de configuración inicial de las capas pueden tener un aspecto desagradable.
+ 
