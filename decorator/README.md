@@ -26,7 +26,7 @@ Queremos mostrar su nombre completo, que en este caso está compuesto, por su no
 
 En primera instancia, lo que se nos viene a la mente es hacer lo siguiente:
 
-```php
+```erb
 <h1>Users</h1>
 <% @users.each do |user| %>
   <div>
@@ -65,7 +65,7 @@ end
 
 Y llamar al método en las vistas:
 
-```php
+```erb
 <h1>Users</h1>
 <% @users.each do |user| %>
   <div>
@@ -90,7 +90,7 @@ module UsersHelper
 end
 ```
 
-```php
+```erb
 <h1>Users</h1>
 <% @users.each do |user| %>
   <div>
@@ -174,7 +174,7 @@ Lo que estamos haciendo es modificando cada unos de los usuarios, para que sean 
 
 Y ahora en la vista, en lugar de llamar al método `name` del modelo, lo que hacemos es llamar al método `name` del `decorator`:
 
-```php
+```erb
 <h1>Users</h1>
 <% @user_decorators.each do |user_decorator| %>
   <div>
@@ -225,7 +225,7 @@ def staff_badge
 end
 ```
 
-```php
+```erb
 <% @user_decorators.each do |user_decorator| %>
   <div>
     <%= user_decorator.name %>
