@@ -237,12 +237,7 @@ end
 
 ![image](https://user-images.githubusercontent.com/104019638/198843778-c264209d-88cd-4693-afc7-4478ee18aae7.png)
 
-
-
-
-
-
-
-
-
 Como hemos visto, los `decorators` son una forma de encapsular la lógica de los modelos, y de esta forma poder tener un modelo más limpio y legible.
+
+Hay que tener en cuenta que utilizar decorators añade una capa de complejidad a nuestra aplicación, y por lo tanto, hay que utilizarlos con criterio, y solo cuando sea necesario (en una aplicación básica, pues va a ser que no 😅).
+
